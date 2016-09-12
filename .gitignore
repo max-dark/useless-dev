@@ -10,7 +10,5 @@
 !/resources/images/.gitkeep
 !/resources/css/.gitkeep
 
-/themes/
-!/themes/bootstrap/
 /etc/storage.php
 /etc/config.php
