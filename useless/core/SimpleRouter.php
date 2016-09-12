@@ -7,7 +7,7 @@
 namespace useless\core;
 
 use useless\abstraction\{
-    Application, Request, Response
+    Application, Registry, Request, Response
 };
 
 /**
@@ -71,10 +71,12 @@ class SimpleRouter implements Dispatcher
             return $this->fireAction($actionClass, $methodName, [$path]);
         }
 
+        $body = $matched ? 'Missing required parameters' : 'Requested method does not exist.';
+        $error_page = $this->container()->get('config.site.error_page');
         return $this->application->getResponse()
                                  ->setCode(301)
-                                 ->redirect('/404/')
-                                 ->setBody($matched ? 'Missing required parameters' : 'Requested method does not exist.');
+                                 ->redirect($error_page)
+                                 ->setBody($body);
     }
 
     /**
@@ -110,5 +112,13 @@ class SimpleRouter implements Dispatcher
         $controller = new $actionClass($this->application);
 
         return $controller->$methodName(...$paramList);
+    }
+
+    /**
+     * @return Registry
+     */
+    protected function container():Registry
+    {
+        return $this->application->container();
     }
 }

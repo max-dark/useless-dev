@@ -1,7 +1,7 @@
 <?php
 /**
  * @copyright Copyright (C) 2016. Max Dark maxim.dark@gmail.com
- * @license   MIT; see LICENSE.txt
+ * @license MIT; see LICENSE.txt
  */
 
 return function () {
@@ -21,7 +21,8 @@ return function () {
         },
         'site' => [
             'title' => 'useless.dev',
-            'email' => 'root@localhost'
+            'email' => 'root@localhost',
+            'error_page' => '/404/'
         ],
     ];
 };
