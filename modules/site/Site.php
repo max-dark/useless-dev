@@ -1,7 +1,7 @@
 <?php
 /**
  * @copyright Copyright (C) 2016. Max Dark maxim.dark@gmail.com
- * @license MIT; see LICENSE.txt
+ * @license   MIT; see LICENSE.txt
  */
 
 namespace useless\modules\site;
@@ -10,6 +10,7 @@ use useless\abstraction\{
     Action, Application, Registry, Response
 };
 use useless\core\ActionTrait;
+use useless\modules\template\Page;
 use useless\themes\bootstrap\{
     ErrorPage, IndexPage
 };
@@ -27,9 +28,7 @@ class Site implements Action
     {
         $this->application($application);
         $this->container()->set('service.site.config', function (Registry $container) {
-            return new ConfigRegistry(
-                $container->get('service.storage.default')
-            );
+            return new ConfigRegistry($container->get('service.storage.default'));
         });
     }
 
@@ -38,29 +37,31 @@ class Site implements Action
      */
     public function index()
     {
-        $view = new IndexPage();
-        $body = $view->render([
-            'title' => $this->container()->get('config.site.title'),
+        return $this->render(new IndexPage(), [
+            'title'   => $this->container()->get('config.site.title'),
             'message' => 'Here content',
-            'slider' => true
+            'slider'  => true
         ]);
-
-        return $this
-            ->response()
-            ->setBody($body);
     }
 
     public function error404()
     {
-        $view = new ErrorPage();
-        $body = $view->render([
-            'title' => $this->container()->get('config.site.title'),
+        return $this->render(new ErrorPage(), [
+            'title'   => $this->container()->get('config.site.title'),
             'message' => 'Here content'
-        ]);
+        ])->setCode(404);
+    }
 
-        return $this
-            ->response()
-            ->setBody($body)
-            ->setCode(404);
+    /**
+     * @param Page  $page
+     * @param array $values
+     *
+     * @return Response
+     */
+    protected function render(Page $page, array $values):Response
+    {
+        $body = $page->render($values);
+
+        return $this->response()->setBody($body);
     }
 }
