@@ -74,7 +74,7 @@ abstract class SqlStorage implements Storage
      *
      * @param array $rule
      *
-     * @return \useless\abstraction\Result|false
+     * @return Result|false
      */
     public function findOne(array $rule)
     {
@@ -88,7 +88,7 @@ abstract class SqlStorage implements Storage
      *
      * @param array $rule
      *
-     * @return \useless\abstraction\Result
+     * @return Result
      */
     public function findMany(array $rule):Result
     {
@@ -135,7 +135,7 @@ abstract class SqlStorage implements Storage
      * @param array  $params
      * @param bool   $needResult
      *
-     * @return bool|\useless\abstraction\Result
+     * @return bool|Result
      */
     public function execute($sql, $params = [], $needResult = true)
     {
@@ -188,8 +188,8 @@ abstract class SqlStorage implements Storage
     }
 
     /**
-     * @param \useless\abstraction\Model $model
-     * @param string                     $indexKey
+     * @param Model  $model
+     * @param string $indexKey
      *
      * @return bool
      */

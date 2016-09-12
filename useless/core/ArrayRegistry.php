@@ -12,7 +12,7 @@ class ArrayRegistry implements Registry
 {
     private $storage = [];
     /**
-     * Check that name found in repository
+     * Checks that name found in repository
      *
      * @param string $name
      *
@@ -24,7 +24,7 @@ class ArrayRegistry implements Registry
     }
 
     /**
-     * Return value of key with $name
+     * Returns value of key with $name
      *
      * @param string $name
      *

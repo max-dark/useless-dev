@@ -40,7 +40,7 @@ class SimpleRouter implements Dispatcher
     }
 
     /**
-     * Dispatch request to action
+     * Dispatches request to action
      *
      * @param Request $request
      *
@@ -72,7 +72,7 @@ class SimpleRouter implements Dispatcher
         }
 
         $body = $matched ? 'Missing required parameters' : 'Requested method does not exist.';
-        $error_page = $this->container()->get('config.site.error_page');
+        $error_page = $this->container()->get('config.site.error_page') ?: '/';
         return $this->application->getResponse()
                                  ->setCode(301)
                                  ->redirect($error_page)

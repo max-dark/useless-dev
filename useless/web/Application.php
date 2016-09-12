@@ -25,6 +25,7 @@ class Application implements AbstractApplication
 
             $response = $router->dispatch($this->getRequest());
         } catch (\Exception $e) {
+            $this->eraseOutput();
             $response = $this->getResponse()
                 ->setHeaders([])
                 ->setBody('Oops')
@@ -37,5 +38,12 @@ class Application implements AbstractApplication
     protected function createResponse():AbstractResponse
     {
         return new Response();
+    }
+
+    protected function eraseOutput()
+    {
+        while (ob_get_level() > 0) {
+            ob_end_clean();
+        }
     }
 }

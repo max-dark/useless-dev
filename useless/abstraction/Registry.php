@@ -9,7 +9,7 @@ namespace useless\abstraction;
 interface Registry
 {
     /**
-     * Check that name found in repository
+     * Checks that the name is contained in the repository
      *
      * @param string $name
      *
@@ -18,7 +18,7 @@ interface Registry
     public function has(string $name):bool;
 
     /**
-     * Return value of key with $name
+     * Returns key value with $name
      *
      * @param string $name
      *
@@ -27,7 +27,7 @@ interface Registry
     public function get(string $name);
 
     /**
-     * Set key $name to $value
+     * Sets key $name to $value
      *
      * @param string $name
      * @param mixed  $value

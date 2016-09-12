@@ -32,6 +32,10 @@ class Config
      * @var string Table Prefix
      */
     private $prefix;
+
+    /**
+     * @var string DB driver
+     */
     private $driver;
 
     /**

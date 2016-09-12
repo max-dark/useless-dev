@@ -15,7 +15,7 @@ class CoreRepository implements Registry
     private $cache = [];
 
     /**
-     * Check that name found in repository
+     * Checks that name found in repository
      *
      * @param string $name
      *
@@ -40,7 +40,7 @@ class CoreRepository implements Registry
     }
 
     /**
-     * Return value of key with $name
+     * Returns value of key with $name
      *
      * @param string $name
      *

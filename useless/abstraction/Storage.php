@@ -51,7 +51,7 @@ interface Storage
     public function save(Model $model, string $indexKey = 'uid'):bool;
 
     /**
-     * Remove model from storage
+     * Removes model from storage
      *
      * @param Model  $model
      * @param string $indexKey "index" key

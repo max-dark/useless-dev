@@ -17,7 +17,7 @@ use useless\abstraction\{
 interface Dispatcher
 {
     /**
-     * Dispatch request to action
+     * Dispatches request to action
      *
      * @param Request $request
      *
