@@ -1,0 +1,16 @@
+#ide files
+/.idea/
+# composer
+/vendor/
+
+# project
+/resources/
+!/resources/.gitkeep
+!/resources/js/.gitkeep
+!/resources/images/.gitkeep
+!/resources/css/.gitkeep
+
+/themes/
+!/themes/bootstrap/
+/etc/storage.php
+/etc/config.php

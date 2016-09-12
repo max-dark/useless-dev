@@ -1,0 +1,25 @@
+{
+  "name": "max-dark/useless-app",
+  "description": "useless application",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "type": "project",
+  "version": "0.0.0.1-alpha",
+  "authors": [
+    {
+      "name": "Max Dark",
+      "email": "maxim.dark@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.0.0",
+    "ext-pdo": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "useless\\": "useless/",
+      "useless\\modules\\": "modules/",
+      "useless\\themes\\": "themes/"
+    }
+  }
+}

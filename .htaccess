@@ -1,0 +1,13 @@
+<FilesMatch "\.htaccess$">
+    Deny from all
+</FilesMatch>
+# ErrorDocument 404 /404/
+### mod_rewrite section start
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php [L,QSA]
+</IfModule>
+### mod_rewrite section end
