@@ -1,7 +1,7 @@
 <?php
 /**
  * @copyright Copyright (C) 2016. Max Dark maxim.dark@gmail.com
- * @license MIT; see LICENSE.txt
+ * @license   MIT; see LICENSE.txt
  */
 
 namespace useless\modules\site;
@@ -13,13 +13,16 @@ use useless\modules\site\models\ConfigModel;
 
 class ConfigRegistry implements Registry
 {
+    /**
+     * @var bool[] list of changed keys
+     */
     private $changed = [];
     /**
-     * @var Storage
+     * @var Storage config storage
      */
     private $storage;
     /**
-     * @var ArrayRegistry
+     * @var ArrayRegistry cache for loaded keys
      */
     private $cache = null;
 
@@ -38,10 +41,13 @@ class ConfigRegistry implements Registry
      */
     public function has(string $name):bool
     {
+        /**
+         * @var ConfigModel $model
+         */
+
         $found = $this->cache->has($name);
 
         if (!$found) {
-            /** @var ConfigModel $model */
             $model = $this->loadOne($name);
 
             $found = false !== $model;
@@ -58,23 +64,27 @@ class ConfigRegistry implements Registry
      *
      * @param string $name
      *
-     * @return mixed
+     * @return string|null
      */
     public function get(string $name)
     {
-        return $this->has($name) ? $this->cache->get($name) : null;
+        return $this->has($name) ? $this->cache->get($name)->value : null;
     }
 
     /**
      * Set key $name to $value
      *
      * @param string $name
-     * @param mixed  $value
+     * @param string $value
      *
      * @return Registry self
      */
     public function set(string $name, $value):Registry
     {
+        /**
+         * @var ConfigModel $model
+         */
+
         $model = $this->get($name);
         if (is_null($model)) {
             $model        = new ConfigModel();
@@ -91,6 +101,8 @@ class ConfigRegistry implements Registry
     }
 
     /**
+     * Read config line by name
+     *
      * @param string $name
      *
      * @return ConfigModel|false
@@ -100,6 +112,9 @@ class ConfigRegistry implements Registry
         return $this->storage->findOne(['name' => $name])->getOne();
     }
 
+    /**
+     * Save all changed values
+     */
     public function __destruct()
     {
         foreach ($this->changed as $name => $value) {
